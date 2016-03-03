@@ -70,7 +70,7 @@ public class ListActivity extends Activity
 		@Override
 		public void onBindRealViewHolder(MyHolder myHolder, int i) {
 			int resId = array.get(i);
-			String str = "position " + i;
+			String str = ListActivity.TAG + "position " + i;
 			myHolder.titleView.setText(str);
 			myHolder.imgView.setImageResource(resId);
 			myHolder.imgView.setVisibility(i == getExpandIndex() ? View.VISIBLE : View.GONE);
