@@ -1,4 +1,4 @@
-package lib.cf.com.extensibleadapter;
+package lib.cf.com.sample;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,13 +18,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import lib.cf.com.extensible.ExpandRecyclerAdapter;
+
 public class ListActivity extends Activity
 {
 	protected final static String TAG = "ListActivity";
-
-	private RecyclerView mRecyclerView;
-	private MyAdapter mAdapter;
-	private List<Integer> mDatas;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +30,7 @@ public class ListActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list);
 
-		mDatas = new ArrayList<Integer>(Arrays.asList(R.drawable.a,
+		List<Integer> mDatas = new ArrayList<>(Arrays.asList(R.drawable.a,
 				R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e,
 				R.drawable.f, R.drawable.g, R.drawable.h, R.drawable.i,
 				R.drawable.j, R.drawable.k, R.drawable.l, R.drawable.m,
@@ -40,12 +38,12 @@ public class ListActivity extends Activity
 				R.drawable.r, R.drawable.s, R.drawable.t, R.drawable.u,
 				R.drawable.v, R.drawable.w));
 
-		mRecyclerView = (RecyclerView) findViewById(R.id.activity_list_view);
+		RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.activity_list_view);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		mRecyclerView.setLayoutManager(linearLayoutManager);
 		mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-		mAdapter = new MyAdapter(this, mDatas);
+		MyAdapter mAdapter = new MyAdapter(this, mDatas);
 		mRecyclerView.setAdapter(mAdapter);
 	}
 
@@ -56,12 +54,12 @@ public class ListActivity extends Activity
 			inflater = LayoutInflater.from(context);
 			this.array = array;
 			setExpandAnimable(true);
-			setExpandCloseable(true);
+			setFlagExpandCloseable(true);
 		}
 
 		@Override
 		public MyHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-			View view = inflater.inflate(R.layout.item_activity_list, null);
+			View view = inflater.inflate(R.layout.item_activity_list, viewGroup, false);
 			MyHolder holder = new MyHolder(view);
 			holder.titleView = (TextView) view.findViewById(R.id.item_activity_list_title);
 			holder.imgView = (ImageView) view.findViewById(R.id.item_activity_list_img);
@@ -72,9 +70,10 @@ public class ListActivity extends Activity
 		@Override
 		public void onBindRealViewHolder(MyHolder myHolder, int i) {
 			int resId = array.get(i);
-			myHolder.titleView.setText("position " + i);
+			String str = "position " + i;
+			myHolder.titleView.setText(str);
 			myHolder.imgView.setImageResource(resId);
-			myHolder.imgView.setVisibility(i == expandIndex ? View.VISIBLE : View.GONE);
+			myHolder.imgView.setVisibility(i == getExpandIndex() ? View.VISIBLE : View.GONE);
 
 			int height = 0;
 			Drawable drawable = getDrawable(resId);

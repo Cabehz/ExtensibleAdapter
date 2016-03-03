@@ -7,9 +7,24 @@ import android.view.View;
  *
  * Created by cabe on 16/2/16.
  */
-public abstract class ExpandRecyclerAdapter<EV extends ExpandRecyclerAdapter.ExpandHolder> extends RecyclerView.Adapter<EV> {
+public abstract class ExpandRecyclerAdapter<EV extends ExpandRecyclerAdapter.ExpandHolder> extends RecyclerView.Adapter<EV> implements IExpandListener {
     protected final static String TAG = "ExpandRecyclerAdapter";
     private ExpandAnimHelper expandHelper = new ExpandAnimHelper();
+
+    @Override
+    public int getExpandIndex() {
+        return expandHelper.expandIndex;
+    }
+
+    @Override
+    public void setExpandAnimable(boolean able) {
+        expandHelper.setExpandAnimable(able);
+    }
+
+    @Override
+    public void setFlagExpandCloseable(boolean able) {
+        expandHelper.setExpandCloseable(able);
+    }
 
     protected abstract void onBindRealViewHolder(EV viewHolder, int i);
 

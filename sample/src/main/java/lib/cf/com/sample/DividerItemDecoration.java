@@ -1,4 +1,4 @@
-package lib.cf.com.extensibleadapter;
+package lib.cf.com.sample;
 
 /**
  *
