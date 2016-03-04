@@ -1,12 +1,12 @@
 # ExtensibleAdapter
 <img src="/readme_res/screen.gif"/>
 <P>How-To-Use</P><br/>
-<P1>step1</P1>
-if RecyclerView
-create a class MyAdapter extends ExpandRecyclerAdapter<? extends ExpandRecyclerAdapter.ExpandHolder>
-else 
-create a class MyAdapter extends ExpandAdapter
-<P1>step2</P1>
-RecyclerView.setAdapter(new MyAdapter())
-or
+<P1>step1</P1><br/>
+if RecyclerView<br/>
+create a class MyAdapter extends ExpandRecyclerAdapter<? extends ExpandRecyclerAdapter.ExpandHolder><br/>
+else <br/>
+create a class MyAdapter extends ExpandAdapter<br/>
+<P1>step2</P1><br/>
+RecyclerView.setAdapter(new MyAdapter())<br/>
+or<br/>
 ListView.setAdapter(new MyAdapter)
