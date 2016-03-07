@@ -37,7 +37,7 @@ public abstract class ExpandRecyclerAdapter<EV extends ExpandRecyclerAdapter.Exp
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (expandHelper.isExpandClickable(i)) {
+                if (expandHelper.setExpandPosition(i)) {
                     notifyDataSetChanged();
                 }
             }

@@ -29,6 +29,7 @@ public class ExpandAnimHelper {
     }
 
     private void showExpandView(final View view, final int viewHeight, boolean show) {
+        long duration = 400;
         if(show) {
             if(viewHeight == 0) return;
 
@@ -38,16 +39,15 @@ public class ExpandAnimHelper {
             view.setLayoutParams(params);
 
             ValueAnimator anim = ObjectAnimator.ofInt(0, viewHeight);
-            anim.setDuration(400);
+            anim.setDuration(duration);
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
                     ViewGroup.LayoutParams params = view.getLayoutParams();
-                    int animVal = (int) animation.getAnimatedValue();
-                    params.height = animVal;
+                    params.height = (int) animation.getAnimatedValue();
                     view.setLayoutParams(params);
 
-                    if(animVal == viewHeight) {
+                    if(isAnimEnd(animation)) {
                         preExpandIndex = expandIndex;
                         flagExpendViewAnim = false;
                     }
@@ -57,16 +57,15 @@ public class ExpandAnimHelper {
         }
         else {
             ValueAnimator anim = ObjectAnimator.ofInt(viewHeight, 0);
-            anim.setDuration(400);
+            anim.setDuration(duration);
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
                     ViewGroup.LayoutParams params = view.getLayoutParams();
-                    int animVal = (int) animation.getAnimatedValue();
-                    params.height = animVal;
+                    params.height = (int) animation.getAnimatedValue();
                     view.setLayoutParams(params);
 
-                    if (animVal == 0) {
+                    if (isAnimEnd(animation)) {
                         view.setVisibility(View.GONE);
 
                         params.height = viewHeight;
@@ -80,6 +79,10 @@ public class ExpandAnimHelper {
             });
             anim.start();
         }
+    }
+
+    private boolean isAnimEnd(ValueAnimator anim) {
+        return Math.abs(anim.getCurrentPlayTime() - anim.getDuration()) < 16;
     }
 
     public void expandAnim(View expandView, int expandHeight, int position) {
@@ -98,17 +101,18 @@ public class ExpandAnimHelper {
         }
     }
 
-    public boolean isExpandClickable(int position) {
+    public boolean setExpandPosition(int position) {
         boolean able = false;
         if(flagExpandAnimable && !flagExpendViewAnim) {
             if(expandIndex != position) {
                 expandIndex = position;
+                able = true;
             } else {
                 if(flagExpandCloseable) {
                     expandIndex = -1;
+                    able = true;
                 }
             }
-            able = true;
         }
         return able;
     }
