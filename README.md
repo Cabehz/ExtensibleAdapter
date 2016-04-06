@@ -10,3 +10,14 @@ create a class MyAdapter extends ExpandAdapter<br/>
 RecyclerView.setAdapter(new MyAdapter())<br/>
 or<br/>
 ListView.setAdapter(new MyAdapter)
+
+### Integration
+The lib is available on Maven Central, you can find it with [Gradle, please](http://gradleplease.appspot.com/#expandablelayout)
+
+``` xml
+
+dependencies {
+    compile 'com.cabe.lib.ui:ExtensibleAdapter:1.0.0'
+}
+
+```
