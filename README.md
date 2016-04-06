@@ -11,9 +11,6 @@ RecyclerView.setAdapter(new MyAdapter())<br/>
 or<br/>
 ListView.setAdapter(new MyAdapter)
 
-### Integration
-The lib is available on Maven Central, you can find it with [Gradle, please](http://gradleplease.appspot.com/#expandablelayout)
-
 ``` xml
 
 dependencies {
