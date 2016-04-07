@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "lib.cf.com.extensibleadapter"
@@ -25,5 +25,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.cabe.lib.ui:ExtensibleAdapter:1.0.2'
+    compile 'com.cabe.lib.ui:ExtensibleAdapter:1.0.0'
 }

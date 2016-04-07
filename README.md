@@ -20,4 +20,4 @@ dependencies {
 ```
 
 Note：
- compileSdkVersion 22+
+ compileSdkVersion 21+
