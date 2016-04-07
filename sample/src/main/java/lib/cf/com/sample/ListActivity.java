@@ -14,16 +14,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cf.lib.extensible.ExpandRecyclerAdapter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import lib.cf.com.extensible.ExpandRecyclerAdapter;
-
 public class ListActivity extends Activity
 {
 	protected final static String TAG = "ListActivity";
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{

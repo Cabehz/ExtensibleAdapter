@@ -18,3 +18,6 @@ dependencies {
 }
 
 ```
+
+Note：
+ compileSdkVersion 22+

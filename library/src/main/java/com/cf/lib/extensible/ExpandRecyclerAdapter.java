@@ -1,4 +1,4 @@
-package lib.cf.com.extensible;
+package com.cf.lib.extensible;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

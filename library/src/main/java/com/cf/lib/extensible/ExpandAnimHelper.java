@@ -1,4 +1,4 @@
-package lib.cf.com.extensible;
+package com.cf.lib.extensible;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;

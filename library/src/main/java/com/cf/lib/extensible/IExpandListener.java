@@ -1,4 +1,4 @@
-package lib.cf.com.extensible;
+package com.cf.lib.extensible;
 
 /**
  *
