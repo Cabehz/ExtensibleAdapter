@@ -72,7 +72,6 @@ public class ListActivity extends Activity
 			int resId = array.get(i);
 			String str = ListActivity.TAG + "position " + i;
 			myHolder.titleView.setText(str);
-			myHolder.imgView.setImageResource(resId);
 			myHolder.imgView.setVisibility(i == getExpandIndex() ? View.VISIBLE : View.GONE);
 
 			int height = 0;
@@ -86,7 +85,13 @@ public class ListActivity extends Activity
 			if(bmp != null) {
 				height = bmp.getHeight();
 			}
-			myHolder.expandView.setTag(height);
+			if(i == 3) {
+				myHolder.expandView.setTag(0);
+				myHolder.imgView.setImageBitmap(null);
+			} else {
+				myHolder.expandView.setTag(height);
+				myHolder.imgView.setImageResource(resId);
+			}
 		}
 
 		@Override

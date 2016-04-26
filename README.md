@@ -14,7 +14,7 @@ ListView.setAdapter(new MyAdapter)
 ``` xml
 
 dependencies {
-    compile 'com.cabe.lib.ui:ExtensibleAdapter:1.0.4'
+    compile 'com.cabe.lib.ui:ExtensibleAdapter:1.0.5'
 }
 
 ```

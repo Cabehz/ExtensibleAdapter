@@ -3,21 +3,23 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0-rc3'
+        classpath 'com.android.tools.build:gradle:2.1.0-rc1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
     }
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream()) // local.properties 有 sdk 的绝对位置
 allprojects {
     repositories {
         jcenter()
         mavenCentral()
+        maven {
+            url properties.getProperty("sdk.dir")+"/extras/android/m2repository"
+        }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

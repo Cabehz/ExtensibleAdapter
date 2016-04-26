@@ -22,8 +22,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 //    compile project(':library')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.cabe.lib.ui:ExtensibleAdapter:1.0.4'
+//    testCompile 'junit:junit:4.12'
+//    compile 'com.android.support:appcompat-v7:21.0.2'
+//    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.cabe.lib.ui:ExtensibleAdapter:1.0.5'
 }

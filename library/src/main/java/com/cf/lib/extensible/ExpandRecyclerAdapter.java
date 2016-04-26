@@ -8,7 +8,6 @@ import android.view.View;
  * Created by cabe on 16/2/16.
  */
 public abstract class ExpandRecyclerAdapter<EV extends ExpandRecyclerAdapter.ExpandHolder> extends RecyclerView.Adapter<EV> implements IExpandListener {
-    protected final static String TAG = "ExpandRecyclerAdapter";
     private ExpandAnimHelper expandHelper = new ExpandAnimHelper();
 
     @Override
@@ -29,15 +28,16 @@ public abstract class ExpandRecyclerAdapter<EV extends ExpandRecyclerAdapter.Exp
     protected abstract void onBindRealViewHolder(EV viewHolder, int i);
 
     @Override
-    public void onBindViewHolder(EV viewHolder, final int i) {
-        onBindRealViewHolder(viewHolder, i);
+    public void onBindViewHolder(EV viewHolder, int i) {
+        final int position = viewHolder.getAdapterPosition();
+        onBindRealViewHolder(viewHolder, position);
 
         int height = (int) viewHolder.expandView.getTag();
-        expandHelper.expandAnim(viewHolder.expandView, height, i);
+        expandHelper.expandAnim(viewHolder.expandView, height, position);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (expandHelper.setExpandPosition(i)) {
+                if (expandHelper.setExpandPosition(position)) {
                     notifyDataSetChanged();
                 }
             }

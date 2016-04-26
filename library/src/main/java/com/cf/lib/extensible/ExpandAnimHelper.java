@@ -31,7 +31,10 @@ public class ExpandAnimHelper {
     private void showExpandView(final View view, final int viewHeight, boolean show) {
         long duration = 400;
         if(show) {
-            if(viewHeight == 0) return;
+            if(viewHeight == 0) {
+                expandIndex = -1;
+                return;
+            }
 
             flagExpendViewAnim = true;
             ViewGroup.LayoutParams params = view.getLayoutParams();
