@@ -28,7 +28,7 @@ public abstract class ExpandRecyclerAdapter<EV extends ExpandRecyclerAdapter.Exp
     protected abstract void onBindRealViewHolder(EV viewHolder, int i);
 
     @Override
-    public void onBindViewHolder(EV viewHolder, int i) {
+    public void onBindViewHolder(EV viewHolder, int viewType) {
         final int position = viewHolder.getAdapterPosition();
         onBindRealViewHolder(viewHolder, position);
 
