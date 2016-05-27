@@ -11,6 +11,8 @@ import android.view.ViewGroup;
  * Created by cabe on 16/2/18.
  */
 public class ExpandAnimHelper {
+    public static int EXPAND_ANIM_DELTA_TIME = 16;
+
     public int expandIndex = 0;
     public int preExpandIndex = 0;
 
@@ -85,7 +87,7 @@ public class ExpandAnimHelper {
     }
 
     private boolean isAnimEnd(ValueAnimator anim) {
-        return Math.abs(anim.getCurrentPlayTime() - anim.getDuration()) < 16;
+        return Math.abs(anim.getCurrentPlayTime() - anim.getDuration()) < EXPAND_ANIM_DELTA_TIME;
     }
 
     public void expandAnim(View expandView, int expandHeight, int position) {
