@@ -85,13 +85,8 @@ public class ListActivity extends Activity
 			if(bmp != null) {
 				height = bmp.getHeight();
 			}
-			if(i == 3) {
-				myHolder.expandView.setTag(0);
-				myHolder.imgView.setImageBitmap(null);
-			} else {
-				myHolder.expandView.setTag(height);
-				myHolder.imgView.setImageResource(resId);
-			}
+			myHolder.expandView.setTag(height);
+			myHolder.imgView.setImageResource(resId);
 		}
 
 		@Override

@@ -23,6 +23,11 @@ public class ExpandAnimHelper {
     /** 是否正在动画  */
     private boolean flagExpendViewAnim;
 
+    /** 展开动画是否正常结束  */
+    private boolean flagAnimOpenNormal = false;
+    /** 关闭动画是否正常结束  */
+    private boolean flagAnimCloseNormal = false;
+
     public void setExpandAnimable(boolean able) {
         flagExpandAnimable = able;
     }
@@ -39,11 +44,12 @@ public class ExpandAnimHelper {
             }
 
             flagExpendViewAnim = true;
+            flagAnimOpenNormal = false;
             ViewGroup.LayoutParams params = view.getLayoutParams();
             params.height = (int) ExpandAnimHelper.pix2Dip(view.getContext(), 0);
             view.setLayoutParams(params);
 
-            ValueAnimator anim = ObjectAnimator.ofInt(0, viewHeight);
+            final ValueAnimator anim = ObjectAnimator.ofInt(0, viewHeight);
             anim.setDuration(duration);
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -55,13 +61,24 @@ public class ExpandAnimHelper {
                     if(isAnimEnd(animation)) {
                         preExpandIndex = expandIndex;
                         flagExpendViewAnim = false;
+                        flagAnimOpenNormal = true;
                     }
                 }
             });
             anim.start();
+            view.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(flagAnimOpenNormal) return;
+
+                    preExpandIndex = expandIndex;
+                    flagExpendViewAnim = false;
+                }
+            }, duration);
         }
         else {
-            ValueAnimator anim = ObjectAnimator.ofInt(viewHeight, 0);
+            flagAnimCloseNormal = false;
+            final ValueAnimator anim = ObjectAnimator.ofInt(viewHeight, 0);
             anim.setDuration(duration);
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -71,6 +88,7 @@ public class ExpandAnimHelper {
                     view.setLayoutParams(params);
 
                     if (isAnimEnd(animation)) {
+                        flagAnimCloseNormal = true;
                         view.setVisibility(View.GONE);
 
                         params.height = viewHeight;
@@ -83,6 +101,22 @@ public class ExpandAnimHelper {
                 }
             });
             anim.start();
+            view.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(flagAnimCloseNormal) return;
+
+                    view.setVisibility(View.GONE);
+
+                    ViewGroup.LayoutParams params = view.getLayoutParams();
+                    params.height = viewHeight;
+                    view.setLayoutParams(params);
+                    flagExpendViewAnim = false;
+                    if (expandIndex == -1) {
+                        preExpandIndex = -1;
+                    }
+                }
+            }, duration);
         }
     }
 
