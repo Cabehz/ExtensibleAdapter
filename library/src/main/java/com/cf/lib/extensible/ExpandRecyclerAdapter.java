@@ -32,7 +32,8 @@ public abstract class ExpandRecyclerAdapter<EV extends ExpandRecyclerAdapter.Exp
         final int position = viewHolder.getAdapterPosition();
         onBindRealViewHolder(viewHolder, position);
 
-        int height = (int) viewHolder.expandView.getTag();
+        Object obj = viewHolder.expandView == null ? null : viewHolder.expandView;
+        int height = Utils.getTagInteger(obj);
         expandHelper.expandAnim(viewHolder.expandView, height, position);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

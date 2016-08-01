@@ -37,8 +37,8 @@ public abstract class ExpandAdapter extends BaseAdapter implements IExpandListen
         Object obj = view.getTag();
         if(obj instanceof  ExpandHolder) {
             ExpandHolder holder = (ExpandHolder) obj;
-            Object tmp = holder.expandView.getTag();
-            int height = tmp == null ? 0 : (int) tmp;
+            Object tmp = holder.expandView == null ? null : holder.expandView.getTag();
+            int height = Utils.getTagInteger(tmp);
             expandHelper.expandAnim(holder.expandView, height, position);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
